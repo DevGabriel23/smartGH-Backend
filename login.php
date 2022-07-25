@@ -23,8 +23,11 @@
         unset($_POST['METHOD']);
         $userLog = $_POST['user'];
         $passLog = $_POST['pass'];
+        $query = "select * from users";
+        $result = get($query);
+        $registros = $result->rowCount();
         $passStrong = password_hash($passLog,PASSWORD_DEFAULT);
-        if((json_encode(get("select * from users where user='".$_POST['user']."'")->fetch(PDO::FETCH_ASSOC))) == "false"){
+        if($registros<1){
             $query="insert into users(user, pass) VALUES ('$userLog','$passStrong')";
             $queryAutoIncrement = "select MAX(id) as id from users";
             $result = post($query,$queryAutoIncrement);
