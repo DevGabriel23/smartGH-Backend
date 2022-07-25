@@ -1,18 +1,19 @@
 <?php
     include('db/db.php');
 
-    header('Acccess-Control-Allow-Origin: *');
+    header("Access-Control-Allow-Origin: *");
 
     $object = new DateTime();
     $object->setTimezone(new DateTimeZone('America/Mexico_City'));
 
     if($_SERVER['REQUEST_METHOD'] == 'GET'){
+        $table = ($_GET['table']);
         if(isset($_GET['id'])){
-            $query="select * from datos where id=".$_GET['id'];
+            $query="select * from $table where id=".$_GET['id'];
             $result = get($query);
             echo json_encode($result->fetch(PDO::FETCH_ASSOC));
         }else {
-            $query="select * from datos";
+            $query="select * from $table";
             $result = get($query);
             echo json_encode($result->fetchAll());
         }

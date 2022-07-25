@@ -1,7 +1,7 @@
 <?php
     include('db/db.php');
 
-    header('Acccess-Control-Allow-Origin: *');
+    header("Access-Control-Allow-Origin: *");
 
     if($_POST['METHOD'] == 'LOGIN'){
         unset($_POST['METHOD']);
@@ -9,11 +9,11 @@
         $passLog = $_POST['pass'];
         $query="select * from users where user='$userLog'";
         $result = get($query);
-        $hash = $result->fetch(PDO::FETCH_ASSOC)['pass'];
-        if(password_verify($passLog,$hash)){
-            echo "Login";
+        $data = $result->fetch(PDO::FETCH_ASSOC);   
+        if(password_verify($passLog,$data['pass'])){
+            echo json_encode($data);
         }else{
-            echo "Bad request";
+            echo json_encode(null);
         }
         header("HTTP/1.1 200 OK");
         exit();
@@ -30,7 +30,7 @@
             $result = post($query,$queryAutoIncrement);
             echo json_encode($result);
         }else{
-            echo json_encode("Ya se ha registrado el usuario administrador");
+            echo json_encode(null);
         }
         header("HTTP/1.1 200 OK");
         exit();
