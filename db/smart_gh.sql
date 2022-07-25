@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 22-07-2022 a las 03:16:22
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 8.1.6
+-- Host: 127.0.0.1
+-- Generation Time: Jul 25, 2022 at 02:46 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,53 +18,93 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `smart_gh`
+-- Database: `smart_gh`
 --
-CREATE DATABASE IF NOT EXISTS `smart_gh` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `smart_gh`;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `datos`
+-- Table structure for table `datos`
 --
 
-CREATE TABLE IF NOT EXISTS `datos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `datos` (
+  `ID` int(11) NOT NULL,
   `temperatura` float NOT NULL,
   `humedad` float NOT NULL,
   `humedadSuelo` float NOT NULL,
   `nivelAgua` float NOT NULL,
   `estadoBomba` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `riego`
+-- Table structure for table `riego`
 --
 
-CREATE TABLE IF NOT EXISTS `riego` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `riego` (
+  `id` int(11) NOT NULL,
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
-  `nivelAgua` float NOT NULL,
-  PRIMARY KEY (`id`)
+  `nivelAgua` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `users`
+-- Table structure for table `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
   `user` varchar(25) NOT NULL,
-  `pass` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
+  `pass` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `datos`
+--
+ALTER TABLE `datos`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `riego`
+--
+ALTER TABLE `riego`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `datos`
+--
+ALTER TABLE `datos`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `riego`
+--
+ALTER TABLE `riego`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
