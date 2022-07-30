@@ -5,3 +5,7 @@ Instalar modulos/dependecias/librerias necesarias
 ```bash
 npm i
 ```
+Iniciar la api
+```bash
+npm run dev
+```
