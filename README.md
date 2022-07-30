@@ -2,6 +2,6 @@
 Api usada en el proyecto de Smart GreenHouse
 
 Instalar modulos/dependecias/librerias necesarias
-´´´ bash
+´ ´ ´ bash
 npm i
-´´´
+´ ´ ´
